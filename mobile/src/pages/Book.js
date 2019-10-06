@@ -8,8 +8,10 @@ import {
   TouchableOpacity,
   TextInput,
   AsyncStorage,
-  Alert
+  Alert,
+  Dimensions
 } from "react-native";
+import Datapicker from "react-native-datepicker";
 
 export default function Book({ navigation }) {
   const id = navigation.getParam("id");
@@ -36,7 +38,7 @@ export default function Book({ navigation }) {
   return (
     <SafeAreaView>
       <Text style={styles.label}>Data de interesse</Text>
-      <TextInput
+      {/* <TextInput
         style={styles.input}
         placeholder="Qual data quer reservar?"
         placeholderTextColor="#999"
@@ -44,9 +46,29 @@ export default function Book({ navigation }) {
         autoCorrect={false}
         value={date}
         onChangeText={setDate}
+      /> */}
+      <Datapicker
+        style={{
+          width: 300,
+          marginBottom: 20,
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+        placeholder="Qual data quer reservar?"
+        mode="date"
+        format="DD-MM-YYYY"
+        confirmBtnText="Confirmar"
+        cancelBtnText="Cancelar"
+        date={date}
+        onDateChange={date => setDate(date)}
+        customStyles={{
+          dateInput: {
+            marginLeft: 10
+          }
+        }}
       />
       <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-        <Text style={styles.buttonText}>Encontrar spots</Text>
+        <Text style={styles.buttonText}>Solicitar reserva</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -64,7 +86,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#444",
     marginBottom: 8,
-    marginTop: 30
+    marginTop: 30,
+    marginLeft: 10
   },
   input: {
     borderWidth: 1,

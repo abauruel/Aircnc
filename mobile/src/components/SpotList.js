@@ -9,7 +9,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import api from "../services/api";
-function SportList({ tech, navigation }) {
+function SpotList({ tech, navigation }) {
   const [spots, setSpots] = useState([]);
   useEffect(() => {
     async function loadSpots() {
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withNavigation(SportList);
+export default withNavigation(SpotList);
